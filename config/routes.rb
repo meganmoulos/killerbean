@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   get '/authorized_user', to: 'users#show'
   post '/login', to: 'sessions#create'
+  get '/cart', to: 'coffee_orders#index'
 
   get '*path',
       to: 'fallback#index',

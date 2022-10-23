@@ -14,6 +14,10 @@ class UsersController < ApplicationController
         render json: user, status: :created
     end
 
+    def orderHistory
+        render json: @current_user.invoices
+    end
+
     private 
 
     def user_params

@@ -6,3 +6,12 @@
 - controllers
 - skeleton of frontend
 - auth -> login/logout
+
+
+----------------------------------------------
+
+- make add to cart work 
+- update (size)
+- delete from order 
+- styling 
+- logout 

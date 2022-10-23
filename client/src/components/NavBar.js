@@ -24,6 +24,12 @@ function NavBar(props) {
                     <p>Coffee</p>
                 </NavLink>
                 <NavLink
+                    to='/cart'
+                    exact
+                >
+                    <p>Shopping Cart</p>
+                </NavLink>
+                <NavLink
                     to='/signup'
                     exact
                 >

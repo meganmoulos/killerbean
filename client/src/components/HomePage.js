@@ -2,11 +2,15 @@ import React from 'react';
 import AllCoffees from './AllCoffees';
 import DetailSection from './DetailSection';
 
-function HomePage({allCoffees}) {
+
+function HomePage({allCoffees, handleAddToCart}) {
+
+
     return (
         <div>
             <DetailSection />
-            <AllCoffees allCoffees={allCoffees} />
+            
+            <AllCoffees handleAddToCart={handleAddToCart} allCoffees={allCoffees} />
         </div>
     );
 }
