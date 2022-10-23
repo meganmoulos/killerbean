@@ -1,10 +1,10 @@
 import React from 'react';
 import Coffee from './Coffee';
 
-function AllCoffees({allCoffees}) {
+function AllCoffees({allCoffees, handleAddToCart}) {
     return (
         <div>
-            {allCoffees.map(coffee => <Coffee key={coffee.name} coffee={coffee} />)}
+            {allCoffees.map(coffee => <Coffee handleAddToCart={handleAddToCart} key={coffee.name} coffee={coffee} />)}
         </div>
     );
 }
