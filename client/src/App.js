@@ -4,17 +4,31 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NavBar from './components/NavBar';
 import HomePage from './components/HomePage';
 import SignUpForm from './components/SignUpForm';
+import Login from './components/Login';
 
 function App() {
   const [allCoffees, setAllCoffees] = useState([])
+  const [currentUser, setCurrentUser] = useState(false)
   
-  useEffect(() => {
+  const fetchCoffees = () => {
     fetch("/coffees")
       .then(res => res.json())
       .then(data => setAllCoffees(data))
+  }
+
+  useEffect(() => {
+    fetch("/authorized_user")
+      .then(res => {
+        if(res.ok){
+          res.json().then(user => {
+            updateUser(user)
+            fetchCoffees()
+          })
+        }
+      })
   }, [])
 
-  console.log(allCoffees)
+  const updateUser = (user) => setCurrentUser(user)
 
   //UserData
   const [users, setUsers] = useState([])
@@ -42,7 +56,10 @@ function App() {
             <HomePage allCoffees={allCoffees}/>
           </Route>
           <Route exact path="/signup">
-            <SignUpForm newUser={newUser}/>
+            <SignUpForm setCurrentUser={setCurrentUser} newUser={newUser}/>
+          </Route>
+          <Route exact path="/login">
+            <Login updateUser={updateUser}/>
           </Route>
         </Switch>
       </div>

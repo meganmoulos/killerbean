@@ -3,8 +3,8 @@ import {NavLink} from "react-router-dom";
 
 function NavBar(props) {
     return (
-        <div className="flex bg-slate-50">
-            <div>
+        <div>
+            <div className='flex'>
                 <NavLink
                     to='/'
                     exact
@@ -24,16 +24,16 @@ function NavBar(props) {
                     <p>Coffee</p>
                 </NavLink>
                 <NavLink
-                    to='/login'
-                    exact
-                >
-                    <p>Login</p>
-                </NavLink>
-                <NavLink
                     to='/signup'
                     exact
                 >
                     <p>Signup</p>
+                </NavLink>
+                <NavLink
+                    to='/login'
+                    exact
+                >
+                    <p>Log In</p>
                 </NavLink>
                 <img width="25px" className="userImage" src="https://ps.w.org/user-avatar-reloaded/assets/icon-256x256.png?rev=2540745" alt="user"/>
             </div>

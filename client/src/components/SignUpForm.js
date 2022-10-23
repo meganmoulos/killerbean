@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function SignUpForm({newUser}) {
+function SignUpForm({newUser, setCurrentUser}) {
 
 
 //FormData
@@ -12,13 +12,18 @@ function SignUpForm({newUser}) {
 
     const formHandler = (e) => {
         e.preventDefault();
+        const user = {
+            first_name: firstName,
+            last_name: lastName,
+            username,
+            password
+        }
         fetch('/users', {
             method: 'POST',
             headers: {"Content-Type" : "application/json"},
-            body: JSON.stringify({
-                first_name: firstName, last_name: lastName, username, password_digest: password
-            }),
+            body: JSON.stringify(user)
         })
+
         .then(r => r.json())
         .then(aNewUser => {
             newUser(aNewUser);
@@ -39,8 +44,8 @@ function SignUpForm({newUser}) {
                 <label>Username </label>
                     <input type="text" onChange={e => setUsername(e.target.value)} value={username}/> 
                 <label>Password </label>
-                    <input type="text" onChange={e => setPassword(e.target.value)} value={password}/> 
-                <button type='submit'>Sign up </button>
+                    <input type="password" onChange={e => setPassword(e.target.value)} value={password}/> 
+                <input type='submit' value='Sign up' />
             </form>
         </div>
     );
