@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
-    has_many :invoices
-    has_many :coffee_orders, through: :invoices
+    skip_before_action :authorize, only: :create
 
+    def index 
+        render json: User.all 
+    end
+    
     def show
         user = User.find(params[:id])
         render json: user
@@ -9,7 +12,7 @@ class UsersController < ApplicationController
     
     def create
         user = User.create!(user_params)
-        render json: user, status :created
+        render json: user, status: :created
     end
 
     private 
