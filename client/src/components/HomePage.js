@@ -1,6 +1,6 @@
 import React from 'react';
 
-function HomePage(props) {
+function HomePage({allCoffees}) {
     return (
         <div>
             

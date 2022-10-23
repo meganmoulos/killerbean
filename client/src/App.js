@@ -12,6 +12,9 @@ function App() {
       .then(data => setAllCoffees(data))
   }, [])
 
+  
+
+  console.log(allCoffees)
   return (
     <BrowserRouter>
       <div className="App">
