@@ -4,8 +4,12 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
+    colors: {
+      'dark-brown': '#271110',
+      'medium-brown': '#966448'
+    },
     fontFamily: {
-      'sans': ['Helvetica', 'Arial', 'sans-serif'],
+      'sans': ['Inter', 'Helvetica', 'Arial', 'sans-serif'],
       'serif': ['Playfair Display']
     },
   },

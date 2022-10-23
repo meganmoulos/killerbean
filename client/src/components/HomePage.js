@@ -8,9 +8,12 @@ function HomePage({allCoffees, handleAddToCart}) {
 
     return (
         <div>
-            <DetailSection />
-            
-            <AllCoffees handleAddToCart={handleAddToCart} allCoffees={allCoffees} />
+            <div>
+                <DetailSection />
+            </div>
+            <div className='flex'>
+                <AllCoffees handleAddToCart={handleAddToCart} allCoffees={allCoffees} />
+            </div>
         </div>
     );
 }
