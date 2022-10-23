@@ -1,0 +1,8 @@
+- setup routes
+    - need to add delete option to coffees in cart
+    - can the signup be our create? We need full CRUD
+    - what is our update? change size on order
+- validations
+- controllers
+- skeleton of frontend
+- auth -> login/logout
