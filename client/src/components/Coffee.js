@@ -3,7 +3,7 @@ import React from 'react';
 function Coffee({coffee, handleAddToCart}) {
 
     return (
-        <div>
+        <div className="bg-red-300">
             <p>{coffee.name}</p>
             <p>{coffee.ingredients}</p>
             <p>{coffee.price}</p>
