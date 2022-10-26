@@ -18,6 +18,8 @@ class UsersController < ApplicationController
         render json: @current_user.invoices
     end
 
+    # @current_user.invoices.last
+
     private 
 
     def user_params

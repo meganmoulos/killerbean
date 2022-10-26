@@ -11,7 +11,8 @@
 ----------------------------------------------
 
 - make add to cart work 
+- checkout button
 - update (size)
 - delete from order 
-- styling 
-- logout (conditional rendering --> if logged in, show logout button)
+- [x] styling 
+- [x] logout (conditional rendering --> if logged in, show logout button)

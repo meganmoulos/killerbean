@@ -1,9 +1,11 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
 
-function NavBar(props) {
+function NavBar({currentUser, handleLogout}) {
+
+
     return (
-        <div className='m-6'>
+        <div className='m-6 text-white'>
             <div className='flex justify-between'>
                 <div className='flex gap-7'>
                     <NavLink
@@ -38,12 +40,15 @@ function NavBar(props) {
                     >
                         <p>Signup</p>
                     </NavLink>
-                    <NavLink
+                    {currentUser ? 
+                        <button onClick={handleLogout}>Logout</button> 
+                        : 
+                        <NavLink
                         to='/login'
                         exact
-                    >
-                        <p>Log In</p>
-                    </NavLink>
+                        >
+                            <p>Log In</p>
+                        </NavLink>}
                     <img width="25px" className="userImage" src="https://ps.w.org/user-avatar-reloaded/assets/icon-256x256.png?rev=2540745" alt="user"/>
                 </div>
             </div>

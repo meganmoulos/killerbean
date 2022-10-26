@@ -5,9 +5,9 @@ function DetailSection(props) {
         <div className='columns-2'>
             <div className='m-8'>
                 <div>
-                    <h1 className='text-6xl font-serif font-bold pb-4'>Start your day with a killer bean</h1>
-                    <h5 className='text-sm uppercase pb-2'>Fair trade certified & delicious</h5>
-                    <p className='text-sm'>Killer bean coffee is the only way to start your day feeling killer. Be like the bean of legend, and knock out your todo list, or beat up some enemies.</p>
+                    <p className='text-white text-6xl font-serif font-bold pb-4'>Start your day with a killer bean</p>
+                    <h5 className='text-white text-sm uppercase pb-2'>Fair trade certified & delicious</h5>
+                    <p className='text-white text-sm'>Killer bean coffee is the only way to start your day feeling killer. Be like the bean of legend, and knock out your todo list, or beat up some enemies.</p>
                 </div>
             </div>
             <div>

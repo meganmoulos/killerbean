@@ -6,7 +6,9 @@ module.exports = {
   theme: {
     colors: {
       'dark-brown': '#271110',
-      'medium-brown': '#966448'
+      'medium-brown': '#966448',
+      'white': '#fff',
+      'black': '#000'
     },
     fontFamily: {
       'sans': ['Inter', 'Helvetica', 'Arial', 'sans-serif'],

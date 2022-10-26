@@ -37,15 +37,15 @@ function SignUpForm({newUser, setCurrentUser}) {
     return (
         <div className='p-4'>
             <form className='flex flex-col' onSubmit={formHandler}>
-                <label>First Name </label>
+                <label className='text-white'>First Name </label>
                     <input type="text" onChange={e => setFirstName(e.target.value)} value={firstName}/> 
-                <label>Last Name </label>
+                <label className='text-white'>Last Name </label>
                     <input type="text" onChange={e => setLastName(e.target.value)} value={lastName}/> 
-                <label>Username </label>
+                <label className='text-white'>Username </label>
                     <input type="text" onChange={e => setUsername(e.target.value)} value={username}/> 
-                <label>Password </label>
+                <label className='text-white'>Password </label>
                     <input type="password" onChange={e => setPassword(e.target.value)} value={password}/> 
-                <input className='border w-[150px]' type='submit' value='Sign up' />
+                <input className='border w-[150px] text-white' type='submit' value='Sign up' />
             </form>
         </div>
     );

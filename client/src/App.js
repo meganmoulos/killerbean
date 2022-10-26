@@ -1,6 +1,6 @@
 import './App.css';
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import NavBar from './components/NavBar';
 import HomePage from './components/HomePage';
 import SignUpForm from './components/SignUpForm';
@@ -10,21 +10,33 @@ import ShoppingCart from './components/ShoppingCart';
 function App() {
   const [allCoffees, setAllCoffees] = useState([])
   const [users, setUsers] = useState([])
-  const [currentUser, setCurrentUser] = useState(false)
+  const [currentUser, setCurrentUser] = useState({})
   const [coffeeOrders, setCoffeeOrders] = useState([])
-  const [currentCart, setCurrentCart] = useState([])
+  const [invoice, setInvoice] = useState({})
   
   const updateUser = (user) => setCurrentUser(user)
+  const newUser = (newUser) => {
+      setUsers([...users, newUser])
+  }
   
+  const currentCart = coffeeOrders?.filter(coffee => coffee?.invoice.id === invoice.id)
+  const pastOrders = coffeeOrders?.filter(coffee => coffee?.invoice.id !== invoice.id)
+
   function handleAddToCart (coffee) {
     fetch('/coffee_orders', {
       method: 'POST',
       headers: {"Content-Type" : "application/json"},
-      body: JSON.stringify({ invoice_id: null, coffee_id: coffee.id, size: coffee.size}),
+      body: JSON.stringify({ invoice_id: invoice.id, coffee_id: coffee.id, size: "Large"}),
     })
     .then(res => res.json())
-    .then(data => setCurrentCart(data))
+    .then(data => {
+      setCoffeeOrders([...coffeeOrders, data])
+      setInvoice(data.invoice)
+    })
   }
+
+  // After payment - set invoice back to empty
+  // Add checkout button
 
   const fetchCoffees = () => {
     fetch("/coffees")
@@ -46,34 +58,28 @@ function App() {
 
   useEffect(() => {
       fetch('/users')
-      .then(r => r.json())
-      .then(data => setUsers(data))
+        .then(r => r.json())
+        .then(data => setUsers(data))
   }, [])
 
-  const newUser = (newUser) => {
-      setUsers([...users, newUser])
-  }
-
-  function fetchCoffeeOrders(){
-    fetch('/coffee_orders')
-      .then(res => res.json())
-      .then(data => setCoffeeOrders(data))
-  }
-
   useEffect(() => {
-    fetch('/cart')
-      .then(res => {
-        if(res.ok){
-          res.json().then(data => {
-            fetchCoffeeOrders()
-          })
-        }
-      })
-    }, [])
+    fetch('/coffee_orders')
+      .then(r => r.json())
+      .then(data => setCoffeeOrders(data))
+  }, [])
 
+  function handleLogout(){
+    fetch('/logout', {
+      method: 'DELETE'
+    })
+    .then(setCurrentUser(false))
+    .then(window.location.href = '/login')
+  }
+
+ 
   return (
     <Router>
-      <NavBar />
+      <NavBar currentUser={currentUser} handleLogout={handleLogout}/>
       <div>
         <Switch>
           <Route exact path="/coffee">
@@ -89,7 +95,10 @@ function App() {
             <Login updateUser={updateUser}/>
           </Route>
           <Route exact path="/cart">
-            <ShoppingCart coffeeOrders={coffeeOrders} currentCart={currentCart} />
+            <ShoppingCart pastOrders={pastOrders} currentCart={currentCart} />
+          </Route>
+          <Route exact path='/logout'>
+            <p>Logout</p>
           </Route>
         </Switch>
       </div>

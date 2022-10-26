@@ -42,17 +42,17 @@ function Login({updateUser}) {
     return (
         <div className="p-4"> 
             <form className='flex flex-col' onSubmit={onSubmit}>
-                <label>
+                <label className='text-white'>
                 Username
                 </label>
                 <input type='text' name='username' value={username} onChange={handleChange} />
             
-                <label>
+                <label className='text-white'>
                 Password
                 </label>
                 <input type='password' name='password' value={password} onChange={handleChange} />
                     
-                <input className='border w-[150px]' type='submit' value='Log in!' />
+                <input className='border w-[150px] text-white' type='submit' value='Log in!' />
             </form>
             {errors? <div>{errors}</div>:null}
         </div>

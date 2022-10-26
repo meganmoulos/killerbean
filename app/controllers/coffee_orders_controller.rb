@@ -1,13 +1,19 @@
 class CoffeeOrdersController < ApplicationController
-    skip_before_action :authorize
 
     def index
         render json: CoffeeOrder.all
     end
 
     def create 
-        order = CoffeeOrder.create!(coffee_order_params)
-        render json: order, status: :created
+        if (params[:invoice_id] == nil)
+            new_invoice = @current_user.invoices.create
+            params[:invoice_id] = new_invoice.id
+            order = CoffeeOrder.create!(coffee_order_params)
+            render json: order, status: :created
+        else
+            order = CoffeeOrder.create!(coffee_order_params)
+            render json: order, status: :created
+        end
     end
 
     private 
