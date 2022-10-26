@@ -1,6 +1,6 @@
 import './App.css';
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NavBar from './components/NavBar';
 import HomePage from './components/HomePage';
 import SignUpForm from './components/SignUpForm';
@@ -85,10 +85,18 @@ function App() {
   }
 
   function removeFromCart (coffeeOrder) {
-    console.log(invoice)    
+    const newOrders = coffeeOrders.filter(order => order.id !== coffeeOrder.id)
+    setCoffeeOrders(newOrders)
     console.log(coffeeOrder)
-    // if(invoice.id === coffeeOrder.invoice.id)
-    //   setInvoice()
+
+    fetch(`/coffee_orders/${coffeeOrder.id}`, {
+      method: 'DELETE'
+    })
+  }
+
+  function handleCheckout(order){
+    pastOrders.push(order)
+    setInvoice({})
   }
 
   return (
@@ -109,7 +117,7 @@ function App() {
             <Login updateUser={updateUser}/>
           </Route>
           <Route exact path="/cart">
-            <ShoppingCart pastOrders={pastOrders} currentCart={currentCart} removeFromCart={removeFromCart} />
+            <ShoppingCart pastOrders={pastOrders} currentCart={currentCart} removeFromCart={removeFromCart} handleCheckout={handleCheckout}/>
           </Route>
           <Route exact path='/logout'>
             <p>Logout</p>

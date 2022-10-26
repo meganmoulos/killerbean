@@ -1,9 +1,14 @@
 class CoffeeOrdersController < ApplicationController
 
-    skip_before_action :authorize, only: [:update]
+    skip_before_action :authorize, only: [:index, :update]
 
     def index
-        render json: CoffeeOrder.all
+        if @current_user
+            render json: @current_user.coffee_orders
+        else
+            render json: CoffeeOrder.all
+        end
+        
     end
 
     def show

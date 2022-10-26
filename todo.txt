@@ -19,7 +19,7 @@
 
 ----------------------------------------------
 
-- checkout button
-- update (size)
-- delete from order
+- [x] checkout button
+- [x] update (size)
+- [x] delete from order
 - hold back tears
