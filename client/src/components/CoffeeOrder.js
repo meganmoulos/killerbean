@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 
 function CoffeeOrder({order, removeFromCart}) {
-   const [input, setInput] = useState("")
+    const [input, setInput] = useState("")
    
-   function handleSizeChange(e){
+    function handleSizeChange(e){
         setInput(e.target.value)
-   }
+    }
 
     function handleSizeSubmit(){
         fetch(`/coffee_orders/${order.id}`, {
@@ -21,6 +21,7 @@ function CoffeeOrder({order, removeFromCart}) {
         <div>
             <div className="bg-medium-brown p-4 m-4 w-[300px]">
                 <p>{order.coffee.name}</p>
+                <p>${order.coffee.price}</p>
                 <p>{input}</p>
                 <select onChange ={handleSizeChange} className='text-black m-2'>
                     <option value="small">Small</option>

@@ -15,6 +15,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({})
   const [coffeeOrders, setCoffeeOrders] = useState([])
   const [invoice, setInvoice] = useState({})
+  const [total, setTotal] = useState(0)
   
   const updateUser = (user) => setCurrentUser(user)
   const newUser = (newUser) => {
@@ -23,8 +24,10 @@ function App() {
   
   const currentCart = coffeeOrders?.filter(coffee => coffee?.invoice.id === invoice.id)
   const pastOrders = coffeeOrders?.filter(coffee => coffee?.invoice.id !== invoice.id)
-  
-  const addToCart = () => toast('Added to cart!')
+
+  const addToCart = () => toast('Added to cart!', {
+    position: toast.POSITION.TOP_CENTER
+  });
 
   function handleAddToCart (coffee) {
     fetch('/coffee_orders', {
@@ -36,12 +39,10 @@ function App() {
     .then(data => {
       setCoffeeOrders([...coffeeOrders, data])
       setInvoice(data.invoice)
+      setTotal(total + coffee.price)
     })
     addToCart()
   }
-
-  // After payment - set invoice back to empty
-  // Add checkout button
 
   const fetchCoffees = () => {
     fetch("/coffees")
@@ -97,7 +98,10 @@ function App() {
     })
   }
 
-  const callToast = () => toast('Checkout successful!')
+  const callToast = () => toast('Checkout successful!', {
+    position: toast.POSITION.TOP_CENTER
+  });
+    
 
     function handleCheckout(order){
     pastOrders.push(order)
@@ -125,7 +129,7 @@ function App() {
               <Login updateUser={updateUser}/>
             </Route>
             <Route exact path="/cart">
-              <ShoppingCart pastOrders={pastOrders} currentCart={currentCart} removeFromCart={removeFromCart} handleCheckout={handleCheckout}/>
+              <ShoppingCart total={total} pastOrders={pastOrders} currentCart={currentCart} removeFromCart={removeFromCart} handleCheckout={handleCheckout}/>
             </Route>
             <Route exact path='/logout'>
               <p>Logout</p>

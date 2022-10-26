@@ -20,12 +20,6 @@ function NavBar({currentUser, handleLogout}) {
                     >
                         <p>Home</p>
                     </NavLink>
-                    <NavLink
-                        to='/coffee'
-                        exact
-                    >
-                        <p>Coffee</p>
-                    </NavLink>
                 </div>
                 <div className='flex gap-7'>
                     <NavLink
