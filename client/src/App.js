@@ -6,6 +6,8 @@ import HomePage from './components/HomePage';
 import SignUpForm from './components/SignUpForm';
 import Login from './components/Login';
 import ShoppingCart from './components/ShoppingCart';
+import {ToastContainer, toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [allCoffees, setAllCoffees] = useState([])
@@ -13,7 +15,6 @@ function App() {
   const [currentUser, setCurrentUser] = useState({})
   const [coffeeOrders, setCoffeeOrders] = useState([])
   const [invoice, setInvoice] = useState({})
-  // const [allInvoices, setAllInvoices] = useState([])
   
   const updateUser = (user) => setCurrentUser(user)
   const newUser = (newUser) => {
@@ -23,6 +24,7 @@ function App() {
   const currentCart = coffeeOrders?.filter(coffee => coffee?.invoice.id === invoice.id)
   const pastOrders = coffeeOrders?.filter(coffee => coffee?.invoice.id !== invoice.id)
   
+  const addToCart = () => toast('Added to cart!')
 
   function handleAddToCart (coffee) {
     fetch('/coffee_orders', {
@@ -35,6 +37,7 @@ function App() {
       setCoffeeOrders([...coffeeOrders, data])
       setInvoice(data.invoice)
     })
+    addToCart()
   }
 
   // After payment - set invoice back to empty
@@ -94,37 +97,44 @@ function App() {
     })
   }
 
-  function handleCheckout(order){
+  const callToast = () => toast('Checkout successful!')
+
+    function handleCheckout(order){
     pastOrders.push(order)
     setInvoice({})
+    callToast()
   }
 
   return (
-    <Router>
-      <NavBar currentUser={currentUser} handleLogout={handleLogout}/>
-      <div>
-        <Switch>
-          <Route exact path="/coffee">
-            <h1>Coffee</h1>
-          </Route>
-          <Route exact path="/">
-            <HomePage handleAddToCart={handleAddToCart} allCoffees={allCoffees}/>
-          </Route>
-          <Route exact path="/signup">
-            <SignUpForm setCurrentUser={setCurrentUser} newUser={newUser}/>
-          </Route>
-          <Route exact path="/login">
-            <Login updateUser={updateUser}/>
-          </Route>
-          <Route exact path="/cart">
-            <ShoppingCart pastOrders={pastOrders} currentCart={currentCart} removeFromCart={removeFromCart} handleCheckout={handleCheckout}/>
-          </Route>
-          <Route exact path='/logout'>
-            <p>Logout</p>
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+    <div>
+      <ToastContainer />
+      <Router>
+        <NavBar currentUser={currentUser} handleLogout={handleLogout}/>
+        <div>
+          <Switch>
+            <Route exact path="/coffee">
+              <h1>Coffee</h1>
+            </Route>
+            <Route exact path="/">
+              <HomePage handleAddToCart={handleAddToCart} allCoffees={allCoffees}/>
+            </Route>
+            <Route exact path="/signup">
+              <SignUpForm setCurrentUser={setCurrentUser} newUser={newUser}/>
+            </Route>
+            <Route exact path="/login">
+              <Login updateUser={updateUser}/>
+            </Route>
+            <Route exact path="/cart">
+              <ShoppingCart pastOrders={pastOrders} currentCart={currentCart} removeFromCart={removeFromCart} handleCheckout={handleCheckout}/>
+            </Route>
+            <Route exact path='/logout'>
+              <p>Logout</p>
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+      
+    </div>
   );
 }
 

@@ -15,7 +15,6 @@ function ShoppingCart({pastOrders, currentCart, removeFromCart, handleCheckout})
                 <h3 className='text-xl font-serif'>Order History</h3>
                 {pastOrders.map(order => <PastCoffeeOrder key={order.id} order={order} />)}
             </div>
-           
         </div>
     );
 }
