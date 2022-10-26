@@ -5,5 +5,4 @@ class CoffeesController < ApplicationController
         render json: Coffee.all
     end
 
-
 end

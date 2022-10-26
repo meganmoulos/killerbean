@@ -1,6 +1,16 @@
 class InvoicesController < ApplicationController
     skip_before_action :authorize
     
+    def index
+        render json: Invoice.all
+    end
+
+    def show
+        invoice = Invoice.find(params[:id])
+        render json: invoice
+    end
+
+
     def create
         invoice = Invoice.create!(invoice_params)
         render json: invoice, status: :created

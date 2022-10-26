@@ -1,18 +1,25 @@
-- setup routes
+- [x] setup routes
     - need to add delete option to coffees in cart
     - can the signup be our create? We need full CRUD
     - what is our update? change size on order
 - validations
-- controllers
-- skeleton of frontend
-- auth -> login/logout
+- [x] controllers
+- [x] skeleton of frontend
+- [x] auth -> login/logout
 
 
 ----------------------------------------------
 
-- make add to cart work 
+- [x] make add to cart work 
 - checkout button
 - update (size)
 - delete from order 
 - [x] styling 
 - [x] logout (conditional rendering --> if logged in, show logout button)
+
+----------------------------------------------
+
+- checkout button
+- update (size)
+- delete from order
+- hold back tears

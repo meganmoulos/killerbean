@@ -13,6 +13,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({})
   const [coffeeOrders, setCoffeeOrders] = useState([])
   const [invoice, setInvoice] = useState({})
+  // const [allInvoices, setAllInvoices] = useState([])
   
   const updateUser = (user) => setCurrentUser(user)
   const newUser = (newUser) => {
@@ -21,6 +22,7 @@ function App() {
   
   const currentCart = coffeeOrders?.filter(coffee => coffee?.invoice.id === invoice.id)
   const pastOrders = coffeeOrders?.filter(coffee => coffee?.invoice.id !== invoice.id)
+  
 
   function handleAddToCart (coffee) {
     fetch('/coffee_orders', {
@@ -68,6 +70,12 @@ function App() {
       .then(data => setCoffeeOrders(data))
   }, [])
 
+  // useEffect(() => {
+  //   fetch('/invoices')
+  //     .then(res => res.json())
+  //     .then(data => setAllInvoices(data))
+  // }, [])
+  
   function handleLogout(){
     fetch('/logout', {
       method: 'DELETE'
@@ -76,14 +84,13 @@ function App() {
     .then(window.location.href = '/login')
   }
 
-  function removeFromCart (coffee) {
+  function removeFromCart (coffeeOrder) {
     console.log(invoice)    
-    console.log(coffee)
-    console.log(coffeeOrders)
-    setInvoice(coffeeOrders.filter(aCoffee => aCoffee !== coffee))
+    console.log(coffeeOrder)
+    // if(invoice.id === coffeeOrder.invoice.id)
+    //   setInvoice()
   }
 
- 
   return (
     <Router>
       <NavBar currentUser={currentUser} handleLogout={handleLogout}/>

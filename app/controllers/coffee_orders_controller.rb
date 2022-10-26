@@ -1,7 +1,14 @@
 class CoffeeOrdersController < ApplicationController
 
+    skip_before_action :authorize, only: [:update]
+
     def index
         render json: CoffeeOrder.all
+    end
+
+    def show
+        coffee = CoffeeOrder.find(params[:id])
+        render json: coffee
     end
 
     def create 
@@ -14,6 +21,12 @@ class CoffeeOrdersController < ApplicationController
             order = CoffeeOrder.create!(coffee_order_params)
             render json: order, status: :created
         end
+    end
+
+    def update
+        coffee = CoffeeOrder.find(params[:id])
+        coffee.update(coffee_order_params)
+        render json: coffee
     end
 
     private 
