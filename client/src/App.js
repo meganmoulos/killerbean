@@ -76,6 +76,13 @@ function App() {
     .then(window.location.href = '/login')
   }
 
+  function removeFromCart (coffee) {
+    console.log(invoice)    
+    console.log(coffee)
+    console.log(coffeeOrders)
+    setInvoice(coffeeOrders.filter(aCoffee => aCoffee !== coffee))
+  }
+
  
   return (
     <Router>
@@ -95,7 +102,7 @@ function App() {
             <Login updateUser={updateUser}/>
           </Route>
           <Route exact path="/cart">
-            <ShoppingCart pastOrders={pastOrders} currentCart={currentCart} />
+            <ShoppingCart pastOrders={pastOrders} currentCart={currentCart} removeFromCart={removeFromCart} />
           </Route>
           <Route exact path='/logout'>
             <p>Logout</p>
