@@ -40,22 +40,22 @@ function Login({updateUser}) {
         setFormData({ ...formData, [name]: value })
       }
     return (
-        <> 
-        <form onSubmit={onSubmit}>
-        <label>
-          Username
-          </label>
-        <input type='text' name='username' value={username} onChange={handleChange} />
-      
-        <label>
-         Password
-         </label>
-        <input type='password' name='password' value={password} onChange={handleChange} />
-              
-        <input type='submit' value='Log in!' />
-      </form>
-      {errors? <div>{errors}</div>:null}
-        </>
+        <div className="p-4"> 
+            <form className='flex flex-col' onSubmit={onSubmit}>
+                <label>
+                Username
+                </label>
+                <input type='text' name='username' value={username} onChange={handleChange} />
+            
+                <label>
+                Password
+                </label>
+                <input type='password' name='password' value={password} onChange={handleChange} />
+                    
+                <input className='border w-[150px]' type='submit' value='Log in!' />
+            </form>
+            {errors? <div>{errors}</div>:null}
+        </div>
     )
 }
 

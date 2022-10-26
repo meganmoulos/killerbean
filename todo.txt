@@ -14,4 +14,4 @@
 - update (size)
 - delete from order 
 - styling 
-- logout 
+- logout (conditional rendering --> if logged in, show logout button)

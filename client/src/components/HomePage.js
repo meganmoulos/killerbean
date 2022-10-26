@@ -11,7 +11,7 @@ function HomePage({allCoffees, handleAddToCart}) {
             <div>
                 <DetailSection />
             </div>
-            <div className='flex'>
+            <div className=''>
                 <AllCoffees handleAddToCart={handleAddToCart} allCoffees={allCoffees} />
             </div>
         </div>

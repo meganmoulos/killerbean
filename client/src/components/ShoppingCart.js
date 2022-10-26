@@ -5,12 +5,12 @@ function ShoppingCart({coffeeOrders, currentCart}) {
 
     return (
         <div>
-            <div>
-                <h2>Current Order</h2>
+            <div className='p-4'>
+                <h2 className='text-xl font-serif'>Current Order</h2>
                 {currentCart.map(order => <CoffeeOrder key={order.id} order={order} />)}
             </div>
-            <div>
-                <h3>Order History</h3>
+            <div className='p-4'>
+                <h3 className='text-xl font-serif'>Order History</h3>
                 {coffeeOrders.map(order => <CoffeeOrder key={order.id} order={order} />)}
             </div>
         </div>
