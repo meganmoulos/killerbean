@@ -1,6 +1,7 @@
 import React from 'react';
 
-function DetailSection(props) {
+function DetailSection({faveCoffee}) {
+
     return (
         <div className='columns-2'>
             <div className='m-8'>
@@ -8,6 +9,10 @@ function DetailSection(props) {
                     <p className='text-white text-6xl font-serif font-bold pb-4'>Start your day with a killer bean</p>
                     <h5 className='text-white text-sm uppercase pb-2'>Fair trade certified & delicious</h5>
                     <p className='text-white text-sm'>Killer bean coffee is the only way to start your day feeling killer. Be like the bean of legend, and knock out your todo list, or beat up some enemies.</p>
+                    <div className="bg-medium-brown p-4 my-8 w-[280px]">
+                        <p className='text-white text-sm'>Your favorite coffee:</p>
+                        <p>{faveCoffee.name}</p>
+                    </div>
                 </div>
             </div>
             <div>

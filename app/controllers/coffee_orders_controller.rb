@@ -1,6 +1,6 @@
 class CoffeeOrdersController < ApplicationController
 
-    skip_before_action :authorize, only: [:index, :update]
+    skip_before_action :authorize, only: [:index, :update, :show]
 
     def index
         if @current_user

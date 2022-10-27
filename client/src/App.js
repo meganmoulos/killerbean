@@ -25,6 +25,18 @@ function App() {
   const currentCart = coffeeOrders?.filter(coffee => coffee?.invoice.id === invoice.id)
   const pastOrders = coffeeOrders?.filter(coffee => coffee?.invoice.id !== invoice.id)
 
+  const coffeePastOrders = pastOrders.map(order => order.coffee.id)
+
+  function mode(arr){
+    return arr.sort((a,b) =>
+          arr.filter(v => v===a).length
+        - arr.filter(v => v===b).length
+    ).pop();
+}
+  const favoriteOrder = mode(coffeePastOrders)
+
+  const faveCoffee = coffeeOrders.length > 0 ? coffeeOrders.find(co => co.id === favoriteOrder).coffee : {}
+
   const addToCart = () => toast('Added to cart!', {
     position: toast.POSITION.TOP_CENTER
   });
@@ -74,12 +86,6 @@ function App() {
       .then(data => setCoffeeOrders(data))
   }, [])
 
-  // useEffect(() => {
-  //   fetch('/invoices')
-  //     .then(res => res.json())
-  //     .then(data => setAllInvoices(data))
-  // }, [])
-  
   function handleLogout(){
     fetch('/logout', {
       method: 'DELETE'
@@ -91,7 +97,6 @@ function App() {
   function removeFromCart (coffeeOrder) {
     const newOrders = coffeeOrders.filter(order => order.id !== coffeeOrder.id)
     setCoffeeOrders(newOrders)
-    console.log(coffeeOrder)
 
     fetch(`/coffee_orders/${coffeeOrder.id}`, {
       method: 'DELETE'
@@ -108,7 +113,7 @@ function App() {
     setInvoice({})
     callToast()
   }
-
+  
   return (
     <div>
       <ToastContainer />
@@ -120,7 +125,7 @@ function App() {
               <h1>Coffee</h1>
             </Route>
             <Route exact path="/">
-              <HomePage handleAddToCart={handleAddToCart} allCoffees={allCoffees}/>
+              <HomePage handleAddToCart={handleAddToCart} allCoffees={allCoffees} faveCoffee={faveCoffee}/>
             </Route>
             <Route exact path="/signup">
               <SignUpForm setCurrentUser={setCurrentUser} newUser={newUser}/>

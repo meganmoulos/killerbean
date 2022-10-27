@@ -3,13 +3,13 @@ import AllCoffees from './AllCoffees';
 import DetailSection from './DetailSection';
 
 
-function HomePage({allCoffees, handleAddToCart}) {
+function HomePage({allCoffees, handleAddToCart, faveCoffee}) {
 
 
     return (
         <div>
             <div>
-                <DetailSection />
+                <DetailSection faveCoffee={faveCoffee}/>
             </div>
             <div className=''>
                 <AllCoffees handleAddToCart={handleAddToCart} allCoffees={allCoffees} />
