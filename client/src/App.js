@@ -101,6 +101,7 @@ function App() {
     fetch(`/coffee_orders/${coffeeOrder.id}`, {
       method: 'DELETE'
     })
+    setTotal(total - coffeeOrder.coffee.price)
   }
 
   const callToast = () => toast('Checkout successful!', {
@@ -112,6 +113,7 @@ function App() {
     pastOrders.push(order)
     setInvoice({})
     callToast()
+    setTotal(0)
   }
   
   return (

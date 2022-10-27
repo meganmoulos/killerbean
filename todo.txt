@@ -23,3 +23,8 @@
 - [x] update (size)
 - [x] delete from order
 - hold back tears
+
+----------------------------------------------
+
+- [x] decrease total if item is removed
+- [x] reset total to 0 after checkout
